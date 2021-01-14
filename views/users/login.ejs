@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/users/new">Signup</a></li>
+        <li><a href="/users/login">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    <h1>Login</h1>
+
+
+    <form action="/users/login" method="POST">
+
+      <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email">
+      </div>
+
+      <div>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" minlength="2">
+      </div>
+
+      <button type="submit">Login</button>
+      
+    </form>
+
+  </main>
+
+  <footer>
+    &copy; <%= new Date().getFullYear() %> Acme Inc.
+  </footer>
+</body>
+</html>
