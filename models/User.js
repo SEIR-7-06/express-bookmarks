@@ -13,6 +13,12 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  bookmarks: [ // Referenced Association
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Bookmark'
+    }
+  ],
 }, {timestamps: true});
 
 const User = mongoose.model('User', userSchema);

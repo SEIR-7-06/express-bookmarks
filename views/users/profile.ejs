@@ -19,6 +19,17 @@
   <main>
     <h1>Welcome <%= user.name %></h1>
 
+    <h4>Bookmarks:</h4>
+    <ul>
+
+      <% user.bookmarks.forEach((bookmark) => { %>
+        <li>
+          <strong><%= bookmark.title %></strong>
+          <a href="#"><button>View</button></a>
+        </li>
+      <% }); %>
+
+    </ul>
   </main>
 
   <footer>

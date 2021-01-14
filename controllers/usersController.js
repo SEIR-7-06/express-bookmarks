@@ -66,6 +66,10 @@ router.get('/:id', (req, res) => {
 
     const context = {
       user: foundUser,
+      tempBookmarks: [
+        {title: 'Bookmark One'},
+        {title: 'Bookmark Two'},
+      ]
     };
 
     res.render('users/profile', context);
