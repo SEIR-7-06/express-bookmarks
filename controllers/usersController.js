@@ -116,4 +116,8 @@ router.post('/:userId/bookmarks', (req, res) => {
   });
 });
 
+router.get('/test', (req, res) => {
+  res.send('Got it!);
+});
+
 module.exports = router;
