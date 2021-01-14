@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Page</title>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/users/new">Signup</a></li>
+        <li><a href="/users/login">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    <h1>Welcome <%= user.name %></h1>
+
+  </main>
+
+  <footer>
+    &copy; <%= new Date().getFullYear() %> Acme Inc.
+  </footer>
+</body>
+</html>

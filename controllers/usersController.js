@@ -48,10 +48,27 @@ router.post('/login', (req, res) => {
 
     // Verify the submitted password matches the foundUser.password
     if (foundUser.password === req.body.password) {
-      return res.redirect('/users/profile');
+      return res.redirect(`/users/${foundUser._id}`);
     }
 
     res.render('users/login');
+  });
+});
+
+// GET User Profile
+router.get('/:id', (req, res) => {
+  console.log(`User id = ${req.params.id}`);
+
+  db.User.findById(req.params.id, (err, foundUser) => {
+    if (err) {
+      console.log(err);
+    }
+
+    const context = {
+      user: foundUser,
+    };
+
+    res.render('users/profile', context);
   });
 });
 
