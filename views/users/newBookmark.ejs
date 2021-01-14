@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profile Page</title>
+  <title>Add New Bookmark</title>
 </head>
 <body>
   <header>
@@ -17,25 +17,25 @@
   </header>
   
   <main>
-    <h1>Welcome <%= user.name %></h1>
+    <h1>Add New Bookmark</h1>
 
+
+    <form action="/users/<%= userId %>/bookmarks" method="POST">
     
-    <a href="/users/<%= user._id %>/bookmarks/new">
-      <h4>Add New Bookmark</h4>
-    </a>
+      <div>
+        <label for="name">Title</label>
+        <input type="text" id="title" name="title" required>
+      </div>
 
-    <h4>Bookmarks:</h4>
-    <ul>
+      <div>
+        <label for="url">URL</label>
+        <input type="text" id="url" name="url">
+      </div>
 
-      <% user.bookmarks.forEach((bookmark) => { %>
+      <button type="submit">Add Bookmark</button>
+      
+    </form>
 
-        <li>
-          <strong><%= bookmark.title %></strong>
-          <a href="<%= bookmark.url %>" target="_blank"><button>View</button></a>
-        </li>
-      <% }); %>
-
-    </ul>
   </main>
 
   <footer>

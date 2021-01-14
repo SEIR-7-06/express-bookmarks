@@ -25,4 +25,5 @@ mongoose.connection.on('error', (err) => {
 // Make all models available after DB connection
 module.exports = {
   User: require('./User'),
+  Bookmark: require('./Bookmark'),
 };

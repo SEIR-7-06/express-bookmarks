@@ -59,20 +59,60 @@ router.post('/login', (req, res) => {
 router.get('/:id', (req, res) => {
   console.log(`User id = ${req.params.id}`);
 
-  db.User.findById(req.params.id, (err, foundUser) => {
+  db.User.findById(req.params.id)
+    .populate('bookmarks')
+    .exec((err, foundUser) => {
+      if (err) {
+        console.log(err);
+      }
+  
+      const context = {
+        user: foundUser,
+        tempBookmarks: [
+          {title: 'Bookmark One'},
+          {title: 'Bookmark Two'},
+        ]
+      };
+  
+      res.render('users/profile', context);
+    })
+});
+
+// GET New User Bookmark Form
+router.get('/:id/bookmarks/new', (req, res) => {
+  const context = {
+    userId: req.params.id
+  };
+
+  res.render('users/newBookmark', context);
+});
+
+// POST Handle the New User Bookmark Form Submission
+router.post('/:userId/bookmarks', (req, res) => {
+  // Create a new Bookmark
+  db.Bookmark.create(req.body, (err, newBookmark) => {
     if (err) {
       console.log(err);
     }
 
-    const context = {
-      user: foundUser,
-      tempBookmarks: [
-        {title: 'Bookmark One'},
-        {title: 'Bookmark Two'},
-      ]
-    };
+    // Find the user by id and update bookmarks
+    db.User.findById(req.params.userId, (err, foundUser) => {
+      if (err) {
+        console.log(err);
+      }
 
-    res.render('users/profile', context);
+      // Update the foundUsers bookmarks array
+      foundUser.bookmarks.push(newBookmark);
+
+      foundUser.save((err, savedUser) => {
+        if (err) {
+          console.log(err);
+        }
+
+        // res.redirect(`/users/${savedUser._id}`);
+        res.redirect(`/users/${savedUser._id}`);
+      });
+    });
   });
 });
 
